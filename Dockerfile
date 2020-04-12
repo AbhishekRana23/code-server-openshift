@@ -31,6 +31,19 @@ RUN apt-get update && \
     echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd;
 
+RUN apt-get update 
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install nodejs -y 
+RUN apt install software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt install python3 -y
+RUN apt install python3-pip -y
+RUN apt install youtube-dl -y
+RUN apt install megatools -y
+RUN apt install aria2 -y
+RUN npm install -g typescript
+RUN apt install locales -y
+
 WORKDIR /home/coder
 
 USER coder
