@@ -46,7 +46,7 @@ RUN apt install locales -y
 
 WORKDIR /home/coder
 
-USER coder
+USER root
 
 RUN mkdir -p projects && mkdir -p certs && \
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash && \
