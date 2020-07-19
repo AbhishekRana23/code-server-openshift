@@ -23,26 +23,16 @@ RUN apt-get update && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     cd /tmp && \
-    wget -O - https://github.com/cdr/code-server/releases/download/${CODER_VERSION}/code-server${CODER_VERSION}-linux-x64.tar.gz | tar -xzv && \
-    chmod -R 755 code-server${CODER_VERSION}-linux-x64/code-server && \
-    mv code-server${CODER_VERSION}-linux-x64/code-server /usr/bin/ && \
-    rm -rf code-server${CODER_VERSION}-linux-x64 && \
+    wget -O - https://github.com/cdr/code-server/releases/download/${CODER_VERSION}/code-server-${CODER_VERSION}-linux-x86_64.tar.gz | tar -xzv && \
+    chmod -R 755 code-server-${CODER_VERSION}-linux-x86_64/code-server && \
+    mv code-server-${CODER_VERSION}-linux-x86_64/code-server /usr/bin/ && \
+    rm -rf code-server-${CODER_VERSION}-linux-x86_64 && \
     adduser --disabled-password --gecos '' coder  && \
     echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd;
 
 RUN apt-get update 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
-RUN apt install nodejs -y 
-RUN apt install software-properties-common -y
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt install python3 -y
-RUN apt install python3-pip -y
-RUN apt install youtube-dl -y
-RUN apt install megatools -y
-RUN apt install aria2 -y
-RUN npm install -g typescript
-RUN apt install locales -y
+
 
 WORKDIR /home/coder
 
